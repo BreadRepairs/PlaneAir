@@ -1,0 +1,15 @@
+﻿.git/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+*.swp
+*.pem
+*.key
+.env
+.env.*
+secrets.*
+**/secrets/**

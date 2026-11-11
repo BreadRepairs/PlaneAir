@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlaneAir | Flight Search</title>
+    <meta name="description" content="Search the PlaneAir flight schedule by date, airport, and route." />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body data-page="flights">
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="brand" aria-label="PlaneAir home">
+          <span class="brand-mark">PA</span>
+          <span>PlaneAir</span>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="flights.html">Flights</a>
+          <a href="airports.html">Airports</a>
+          <a href="flight-details.html?flight=PA101" class="nav-cta">Flight details</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container main-content">
+      <section class="section">
+        <div class="page-header">
+          <span class="eyebrow">PlaneAir schedule</span>
+          <h1>Flight search and timetable</h1>
+          <p>Choose a date and search by airport code to view flights operating on the selected day.</p>
+        </div>
+
+        <div class="search-panel">
+          <div class="filters">
+            <div class="form-field">
+              <label for="schedule-date">Travel date</label>
+              <input id="schedule-date" data-flight-date type="date" />
+            </div>
+            <div class="form-field">
+              <label for="airport-search">Airport search</label>
+              <input id="airport-search" data-flight-search type="text" placeholder="Search CHQ, KAP, or airport name" />
+            </div>
+          </div>
+          <div class="status-banner" data-status-banner aria-live="polite"></div>
+        </div>
+
+        <div class="flight-list" data-flight-board aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="brand" aria-label="PlaneAir footer brand">
+          <span class="brand-mark">PA</span>
+          <span>PlaneAir</span>
+        </div>
+        <p>PlaneAir timetable © 2026</p>
+      </div>
+    </footer>
+  </body>
+</html>
