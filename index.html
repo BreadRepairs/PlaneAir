@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlaneAir | Flight Schedule</title>
+    <meta
+      name="description"
+      content="PlaneAir offers a LEGO-inspired airline schedule for travellers planning flights between CHQ and KAP."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body data-page="home">
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="brand" aria-label="PlaneAir home">
+          <span class="brand-mark">PA</span>
+          <span>PlaneAir</span>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="flights.html">Flights</a>
+          <a href="airports.html">Airports</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container page-hero-inner">
+          <div class="hero-copy">
+            <span class="eyebrow">Modern airline schedule</span>
+            <h1>Fly the skies with PlaneAir.</h1>
+            <p>
+              Discover PlaneAir routes, check the latest departures, and plan your LEGO-inspired travel day with a clean,
+              airport-ready schedule.
+            </p>
+            <div class="hero-actions">
+              <a href="flights.html" class="primary-btn">Search flights</a>
+              <a href="airports.html" class="secondary-btn">Browse airports</a>
+            </div>
+          </div>
+
+          <div class="hero-panel" aria-label="Quick flight lookup">
+            <div class="panel-heading">
+              <h2>Today’s departures</h2>
+              <span class="badge">Live</span>
+            </div>
+
+            <div class="search-grid">
+              <div class="form-field">
+                <label for="home-date">Select date</label>
+                <input id="home-date" data-home-date type="date" />
+              </div>
+            </div>
+            <div class="status-banner" data-status-banner aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="container main-content">
+        <section class="section">
+          <div class="section-header">
+            <h2>Upcoming PlaneAir flights</h2>
+            <p class="section-copy">All flight timing is driven by the JSON schedule.</p>
+          </div>
+          <div class="results-grid" data-home-summary></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="brand" aria-label="PlaneAir footer brand">
+          <span class="brand-mark">PA</span>
+          <span>PlaneAir</span>
+        </div>
+        <p>PlaneAir schedule system © 2026</p>
+      </div>
+    </footer>
+  </body>
+</html>

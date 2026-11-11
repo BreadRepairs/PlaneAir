@@ -1,0 +1,51 @@
+{
+  "airports": [
+    {
+      "code": "CHQ",
+      "name": "CHQ Airport",
+      "city": "Chiquita",
+      "country": "United Federation"
+    },
+    {
+      "code": "KAP",
+      "name": "Kappe International Airport",
+      "city": "Kappe",
+      "country": "Kappe Republic"
+    }
+  ],
+  "flights": [
+    {
+      "flightNumber": "PA101",
+      "departureAirport": "CHQ",
+      "destinationAirport": "KAP",
+      "departureTime": "14:30",
+      "arrivalTime": "16:05",
+      "aircraft": "LEGO Boeing 737",
+      "frequency": "daily",
+      "activeStartDate": "2026-01-01",
+      "activeEndDate": null
+    },
+    {
+      "flightNumber": "PA102",
+      "departureAirport": "CHQ",
+      "destinationAirport": "KAP",
+      "departureTime": "19:10",
+      "arrivalTime": "20:45",
+      "aircraft": "LEGO Boeing 737",
+      "frequency": "daily",
+      "activeStartDate": "2026-01-01",
+      "activeEndDate": null
+    },
+    {
+      "flightNumber": "PA201",
+      "departureAirport": "KAP",
+      "destinationAirport": "CHQ",
+      "departureTime": "08:20",
+      "arrivalTime": "09:55",
+      "aircraft": "LEGO Airbus A320",
+      "frequency": "daily",
+      "activeStartDate": "2026-01-01",
+      "activeEndDate": null
+    }
+  ]
+}

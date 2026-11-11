@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlaneAir | Airports</title>
+    <meta name="description" content="Browse the PlaneAir airport directory and route availability." />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body data-page="airports">
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="brand" aria-label="PlaneAir home">
+          <span class="brand-mark">PA</span>
+          <span>PlaneAir</span>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="flights.html">Flights</a>
+          <a href="airports.html">Airports</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container main-content">
+      <section class="section">
+        <div class="page-header airports-header">
+          <span class="eyebrow">PlaneAir network</span>
+          <h1>Airport directory</h1>
+          <p>Review the airports served by PlaneAir and access route information for each location.</p>
+        </div>
+
+        <div class="airport-grid" data-airport-list aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="brand" aria-label="PlaneAir footer brand">
+          <span class="brand-mark">PA</span>
+          <span>PlaneAir</span>
+        </div>
+        <p>PlaneAir airport network © 2026</p>
+      </div>
+    </footer>
+  </body>
+</html>
