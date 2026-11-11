@@ -2,49 +2,44 @@
   "airports": [
     {
       "code": "CHQ",
-      "name": "CHQ Airport",
-      "city": "Chiquita",
-      "country": "United Federation"
+      "name": "Chania Airport",
+      "city": "Chania",
+      "country": "Greece"
     },
     {
-      "code": "KAP",
-      "name": "Kappe International Airport",
-      "city": "Kappe",
-      "country": "Kappe Republic"
+      "code": "LHR",
+      "name": "London Heathrow",
+      "city": "London",
+      "country": "United Kingdom"
+    },
+    {
+      "code": "OSM",
+      "name": "Osama's Intl. Airport",
+      "city": "Osama",
+      "country": "Spain"
     }
   ],
   "flights": [
     {
-      "flightNumber": "PA101",
+      "flightNumber": "PR2",
       "departureAirport": "CHQ",
-      "destinationAirport": "KAP",
+      "destinationAirport": "LHR",
       "departureTime": "14:30",
-      "arrivalTime": "16:05",
-      "aircraft": "LEGO Boeing 737",
-      "frequency": "daily",
-      "activeStartDate": "2026-01-01",
+      "arrivalTime": "00:10",
+      "aircraft": "Embraer E170",
+      "frequency": "Everyday",
+      "activeStartDate": "19.11.2026",
       "activeEndDate": null
     },
     {
-      "flightNumber": "PA102",
-      "departureAirport": "CHQ",
-      "destinationAirport": "KAP",
-      "departureTime": "19:10",
-      "arrivalTime": "20:45",
-      "aircraft": "LEGO Boeing 737",
-      "frequency": "daily",
-      "activeStartDate": "2026-01-01",
-      "activeEndDate": null
-    },
-    {
-      "flightNumber": "PA201",
-      "departureAirport": "KAP",
+      "flightNumber": "PR1",
+      "departureAirport": "LHR",
       "destinationAirport": "CHQ",
-      "departureTime": "08:20",
-      "arrivalTime": "09:55",
-      "aircraft": "LEGO Airbus A320",
-      "frequency": "daily",
-      "activeStartDate": "2026-01-01",
+      "departureTime": "02:30",
+      "arrivalTime": "11:10",
+      "aircraft": "Mitsubishi CRJ-100",
+      "frequency": "Everyday",
+      "activeStartDate": "20.11.2026",
       "activeEndDate": null
     }
   ]
