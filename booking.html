@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlaneAir | Book a Flight</title>
+    <meta name="description" content="Choose a scheduled PlaneAir flight and send a booking request." />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script defer src="emailjs-config.js"></script>
+    <script defer src="script.js"></script>
+  </head>
+  <body data-page="booking">
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="brand" aria-label="PlaneAir home">
+          <span class="brand-mark">PA</span>
+          <span>PlaneAir</span>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="flights.html">Flights</a>
+          <a href="booking.html" aria-current="page">Book</a>
+          <a href="airports.html">Airports</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container main-content">
+      <section class="section">
+        <div class="page-header">
+          <span class="eyebrow">PlaneAir reservations</span>
+          <h1>Book your next flight</h1>
+          <p>Choose an operating PlaneAir flight and send us a booking request. Flight details are loaded from the PlaneAir schedule.</p>
+        </div>
+
+        <div class="booking-layout">
+          <form class="booking-form" data-booking-form>
+            <div class="booking-section-heading">
+              <span class="booking-step">01</span>
+              <div>
+                <h2>Choose your flight</h2>
+                <p>Pick a travel date and route to see scheduled flights.</p>
+              </div>
+            </div>
+
+            <div class="booking-fields booking-route-fields">
+              <div class="form-field">
+                <label for="booking-date">Travel date</label>
+                <input id="booking-date" name="travel_date" data-booking-date type="date" required />
+              </div>
+              <div class="form-field">
+                <label for="booking-from">From</label>
+                <select id="booking-from" name="departure_airport" data-booking-from required>
+                  <option value="">Any departure airport</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="booking-to">To</label>
+                <select id="booking-to" name="destination_airport" data-booking-to required>
+                  <option value="">Any destination</option>
+                </select>
+              </div>
+              <div class="form-field booking-flight-field">
+                <label for="booking-flight">Available flight</label>
+                <select id="booking-flight" name="flight_number" data-booking-flight required>
+                  <option value="">Select a date and route first</option>
+                </select>
+                <span class="field-hint" data-flight-hint>Select a scheduled flight for your travel date.</span>
+              </div>
+            </div>
+
+            <div class="booking-divider"></div>
+
+            <div class="booking-section-heading">
+              <span class="booking-step">02</span>
+              <div>
+                <h2>Passenger details</h2>
+                <p>We’ll use these details to contact you about the request.</p>
+              </div>
+            </div>
+
+            <div class="booking-fields">
+              <div class="form-field">
+                <label for="passenger-name">Full name</label>
+                <input id="passenger-name" name="passenger_name" type="text" autocomplete="name" maxlength="100" required />
+              </div>
+              <div class="form-field">
+                <label for="passenger-email">Email address</label>
+                <input id="passenger-email" name="passenger_email" type="email" autocomplete="email" maxlength="254" required />
+              </div>
+              <div class="form-field">
+                <label for="passenger-count">Passengers</label>
+                <select id="passenger-count" name="passenger_count" required>
+                  <option value="1">1 passenger</option>
+                  <option value="2">2 passengers</option>
+                  <option value="3">3 passengers</option>
+                  <option value="4">4 passengers</option>
+                  <option value="5">5 passengers</option>
+                  <option value="6">6 passengers</option>
+                </select>
+              </div>
+              <div class="form-field booking-notes-field">
+                <label for="booking-notes">Notes <span>(optional)</span></label>
+                <textarea id="booking-notes" name="booking_notes" rows="3" maxlength="1000" placeholder="Anything you’d like us to know?"></textarea>
+              </div>
+            </div>
+
+            <div class="booking-consent">
+              This demo sends a booking request by email; it does not reserve a seat or take payment. PlaneAir will need to confirm the request separately.
+            </div>
+
+            <button class="primary-btn booking-submit" type="submit" data-booking-submit>Send booking request</button>
+            <div class="status-banner booking-status" data-status-banner role="status" aria-live="polite"></div>
+          </form>
+
+          <aside class="booking-aside">
+            <span class="eyebrow">Your itinerary</span>
+            <h2>Flight summary</h2>
+            <div class="booking-summary" data-booking-summary>
+              <p>Choose a travel date and flight to see the schedule summary.</p>
+            </div>
+            <div class="booking-aside-note">
+              <strong>Need to change your choice?</strong>
+              <span>Update the date or airports above. Only flights scheduled for that date can be requested.</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="brand" aria-label="PlaneAir footer brand">
+          <span class="brand-mark">PA</span>
+          <span>PlaneAir</span>
+        </div>
+        <p>PlaneAir booking requests © 2026</p>
+      </div>
+    </footer>
+  </body>
+</html>

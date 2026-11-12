@@ -268,6 +268,139 @@ function initHomePage() {
   updateSummary();
 }
 
+function initBookingPage() {
+  const form = document.querySelector('[data-booking-form]');
+  const dateInput = document.querySelector('[data-booking-date]');
+  const fromSelect = document.querySelector('[data-booking-from]');
+  const toSelect = document.querySelector('[data-booking-to]');
+  const flightSelect = document.querySelector('[data-booking-flight]');
+  const flightHint = document.querySelector('[data-flight-hint]');
+  const summary = document.querySelector('[data-booking-summary]');
+  const submitButton = document.querySelector('[data-booking-submit]');
+
+  if (!form || !dateInput || !fromSelect || !toSelect || !flightSelect || !summary || !submitButton) return;
+
+  const populateAirportSelect = (select) => {
+    const placeholder = select.options[0].outerHTML;
+    select.innerHTML = placeholder + Array.from(state.airports.values())
+      .map((airport) => `<option value="${airport.code}">${airport.code} — ${airport.name}</option>`)
+      .join('');
+  };
+
+  const updateBookingSummary = () => {
+    const flight = state.flights.find((item) => item.flightNumber === flightSelect.value);
+    if (!flight || !flightMatchesDate(flight, dateInput.value)) {
+      summary.innerHTML = '<p>Choose a travel date and flight to see the schedule summary.</p>';
+      return;
+    }
+
+    const departureAirport = getAirportByCode(flight.departureAirport);
+    const destinationAirport = getAirportByCode(flight.destinationAirport);
+    summary.innerHTML = `
+      <div class="booking-summary-route">
+        <div><span class="route-label">From</span><strong>${flight.departureAirport}</strong><span>${departureAirport ? departureAirport.name : ''}</span></div>
+        <span class="route-arrow">→</span>
+        <div><span class="route-label">To</span><strong>${flight.destinationAirport}</strong><span>${destinationAirport ? destinationAirport.name : ''}</span></div>
+      </div>
+      <div class="booking-summary-row"><span>Flight</span><strong>${flight.flightNumber}</strong></div>
+      <div class="booking-summary-row"><span>Travel date</span><strong>${formatDate(dateInput.value)}</strong></div>
+      <div class="booking-summary-times"><div><span>Departure</span><strong>${flight.departureTime}</strong></div><div><span>Arrival</span><strong>${flight.arrivalTime}</strong></div></div>
+      <div class="booking-summary-row"><span>Aircraft</span><strong>${flight.aircraft}</strong></div>
+    `;
+  };
+
+  const updateFlightOptions = () => {
+    const dateString = dateInput.value;
+    const previousSelection = flightSelect.value;
+    const matchingFlights = getFlightsForDate(dateString).filter((flight) => {
+      return (!fromSelect.value || flight.departureAirport === fromSelect.value)
+        && (!toSelect.value || flight.destinationAirport === toSelect.value);
+    }).sort((first, second) => first.departureTime.localeCompare(second.departureTime));
+
+    flightSelect.innerHTML = '<option value="">Choose an available flight</option>' + matchingFlights
+      .map((flight) => `<option value="${flight.flightNumber}">${flight.flightNumber} · ${flight.departureTime} → ${flight.arrivalTime} · ${flight.aircraft}</option>`)
+      .join('');
+
+    if (matchingFlights.some((flight) => flight.flightNumber === previousSelection)) {
+      flightSelect.value = previousSelection;
+    }
+
+    flightSelect.disabled = matchingFlights.length === 0;
+    if (flightHint) {
+      flightHint.textContent = matchingFlights.length
+        ? `${matchingFlights.length} scheduled flight${matchingFlights.length === 1 ? '' : 's'} available for this date and route.`
+        : 'No PlaneAir flights are scheduled for this date and route.';
+    }
+
+    updateBookingSummary();
+  };
+
+  populateAirportSelect(fromSelect);
+  populateAirportSelect(toSelect);
+  dateInput.value = getDefaultDate();
+  dateInput.min = getDefaultDate();
+
+  dateInput.addEventListener('change', updateFlightOptions);
+  fromSelect.addEventListener('change', updateFlightOptions);
+  toSelect.addEventListener('change', updateFlightOptions);
+  flightSelect.addEventListener('change', updateBookingSummary);
+  updateFlightOptions();
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const selectedFlight = state.flights.find((flight) => flight.flightNumber === flightSelect.value);
+    if (!selectedFlight || !flightMatchesDate(selectedFlight, dateInput.value)) {
+      showStatus('Choose a flight that operates on the selected date.', true);
+      return;
+    }
+
+    const config = window.PLANEAIR_EMAILJS_CONFIG || {};
+    const hasConfiguration = ['publicKey', 'serviceId', 'templateId'].every((key) => {
+      return typeof config[key] === 'string' && config[key].trim() && !config[key].startsWith('YOUR_');
+    });
+
+    if (!hasConfiguration) {
+      showStatus('EmailJS is not configured yet. Add your public key, service ID, and template ID in emailjs-config.js.', true);
+      return;
+    }
+
+    if (!window.emailjs || typeof window.emailjs.send !== 'function') {
+      showStatus('The EmailJS service could not be loaded. Check your internet connection and try again.', true);
+      return;
+    }
+
+    const formData = new FormData(form);
+    const templateParams = {
+      passenger_name: String(formData.get('passenger_name') || '').trim(),
+      passenger_email: String(formData.get('passenger_email') || '').trim(),
+      passenger_count: String(formData.get('passenger_count') || '1'),
+      flight_number: selectedFlight.flightNumber,
+      departure_airport: selectedFlight.departureAirport,
+      destination_airport: selectedFlight.destinationAirport,
+      departure_time: selectedFlight.departureTime,
+      arrival_time: selectedFlight.arrivalTime,
+      travel_date: dateInput.value,
+      aircraft: selectedFlight.aircraft,
+      booking_notes: String(formData.get('booking_notes') || '').trim(),
+    };
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending request…';
+
+    try {
+      window.emailjs.init({ publicKey: config.publicKey });
+      await window.emailjs.send(config.serviceId, config.templateId, templateParams);
+      showStatus('Your booking request was sent. PlaneAir will contact you to confirm it.', false);
+    } catch (error) {
+      showStatus('Your request could not be sent right now. Please try again later.', true);
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = 'Send booking request';
+    }
+  });
+}
+
 function renderFlightDetail() {
   const detailRoot = document.querySelector('[data-flight-detail]');
   if (!detailRoot) return;
@@ -397,6 +530,10 @@ async function initializeApp() {
 
   if (page === 'detail') {
     initDetailPage();
+  }
+
+  if (page === 'booking') {
+    initBookingPage();
   }
 }
 
