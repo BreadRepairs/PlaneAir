@@ -1,3 +1,37 @@
 {
-  "aircraft": []
+  "aircraft": [
+    {
+      "id": "nrone",
+      "manufacturer": "Airbus",
+      "model": "Airbus A340-300",
+      "icaoCode": "A343",
+      "registration": "N/A",
+      "capacity": 14,
+      "rangeKm": 22000,
+      "cruisingSpeedKmh": 780,
+      "status": "Not Active"
+    },
+    {
+      "id": "nrtwo",
+      "manufacturer": "Embraer",
+      "model": "Embraer E170",
+      "icaoCode": "E170",
+      "registration": "N/A",
+      "capacity": 6,
+      "rangeKm": 44590,
+      "cruisingSpeedKmh": 1010,
+      "status": "Active"
+    },
+    {
+      "id": "nrtre",
+      "manufacturer": "Mitsubishi/Canadair",
+      "model": "Mitsubishi CRJ-1000",
+      "icaoCode": "CRJX",
+      "registration": "N/A",
+      "capacity": 7,
+      "rangeKm": 37770,
+      "cruisingSpeedKmh": 990,
+      "status": "Active"
+    }
+  ]
 }
