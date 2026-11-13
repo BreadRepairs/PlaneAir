@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlaneAir | Our Fleet</title>
+    <meta name="description" content="Explore the aircraft in the PlaneAir fleet." />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="fleet.js"></script>
+  </head>
+  <body data-page="fleet">
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="brand" aria-label="PlaneAir home">
+          <span class="brand-mark">PA</span>
+          <span>PlaneAir</span>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="flights.html">Flights</a>
+          <a href="booking.html">Book</a>
+          <a href="airports.html">Airports</a>
+          <a href="fleet.html" aria-current="page">Our Fleet</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero fleet-hero">
+        <div class="container fleet-hero-inner">
+          <div class="hero-copy">
+            <span class="eyebrow">PlaneAir aircraft</span>
+            <h1>Our Fleet</h1>
+            <p>Meet the aircraft that make every PlaneAir journey possible. Aircraft specifications and availability are provided directly from our fleet register.</p>
+          </div>
+          <div class="fleet-count" data-fleet-count hidden aria-live="polite"></div>
+        </div>
+      </section>
+
+      <div class="container main-content">
+        <section class="section" aria-labelledby="fleet-section-title">
+          <h2 class="visible-hidden" id="fleet-section-title">PlaneAir aircraft</h2>
+          <div class="fleet-message" data-fleet-message role="status" aria-live="polite"></div>
+          <div class="fleet-controls" data-fleet-controls hidden>
+            <div class="form-field fleet-search-field">
+              <label for="fleet-search">Search aircraft</label>
+              <input id="fleet-search" data-fleet-search type="search" placeholder="Manufacturer, model, ICAO code, registration or name" autocomplete="off" />
+            </div>
+            <div class="fleet-filters" role="group" aria-label="Filter aircraft by status">
+              <button type="button" class="fleet-filter is-selected" data-fleet-filter="all" aria-pressed="true">All aircraft</button>
+              <button type="button" class="fleet-filter" data-fleet-filter="Active" aria-pressed="false">Active</button>
+              <button type="button" class="fleet-filter" data-fleet-filter="Maintenance" aria-pressed="false">Maintenance</button>
+              <button type="button" class="fleet-filter" data-fleet-filter="Retired" aria-pressed="false">Retired</button>
+            </div>
+          </div>
+          <div class="fleet-grid" data-fleet-list aria-live="polite"></div>
+        </section>
+      </div>
+    </main>
+
+    <dialog class="fleet-dialog" data-aircraft-dialog aria-labelledby="aircraft-dialog-title">
+      <div class="fleet-dialog-inner">
+        <button type="button" class="fleet-dialog-close" data-dialog-close aria-label="Close aircraft details">×</button>
+        <div data-aircraft-details></div>
+      </div>
+    </dialog>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="brand" aria-label="PlaneAir footer brand">
+          <span class="brand-mark">PA</span>
+          <span>PlaneAir</span>
+        </div>
+        <p>PlaneAir fleet © 2026</p>
+      </div>
+    </footer>
+  </body>
+</html>
