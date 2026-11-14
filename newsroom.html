@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlaneAir | Newsroom</title>
+    <meta name="description" content="Read the latest PlaneAir newsroom updates and company stories." />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="newsroom.js"></script>
+  </head>
+  <body data-page="newsroom">
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="brand" aria-label="PlaneAir home">
+          <span class="brand-mark">PA</span>
+          <span>PlaneAir</span>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="flights.html">Flights</a>
+          <a href="booking.html">Book</a>
+          <a href="airports.html">Airports</a>
+          <a href="fleet.html">Our Fleet</a>
+          <a href="newsroom.html" aria-current="page">Newsroom</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero newsroom-hero">
+        <div class="container page-hero-inner">
+          <div class="hero-copy">
+            <span class="eyebrow">PlaneAir official updates</span>
+            <h1>PlaneAir Newsroom</h1>
+            <p>Read the latest company updates, route developments, operational news, and travel information from PlaneAir.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="container main-content">
+        <section class="section">
+          <div class="newsroom-panel">
+            <div class="newsroom-tools">
+              <div class="form-field newsroom-search-field">
+                <label for="newsroom-search">Search newsroom</label>
+                <input id="newsroom-search" data-newsroom-search type="search" placeholder="Search headlines, summaries, categories and content" autocomplete="off" />
+              </div>
+              <div class="newsroom-categories" data-newsroom-categories></div>
+            </div>
+            <div class="status-banner" data-status-banner aria-live="polite"></div>
+          </div>
+
+          <div class="featured-list" data-newsroom-featured></div>
+          <div class="newsroom-grid" data-newsroom-list aria-live="polite"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="brand" aria-label="PlaneAir footer brand">
+          <span class="brand-mark">PA</span>
+          <span>PlaneAir</span>
+        </div>
+        <p>PlaneAir newsroom © 2026</p>
+      </div>
+    </footer>
+  </body>
+</html>
